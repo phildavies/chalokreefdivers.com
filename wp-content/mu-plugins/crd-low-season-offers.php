@@ -238,7 +238,7 @@ function crd_low_season_offer_shortcode( $atts ) {
 			'en' => array(
 				'label'  => 'Low Season Special',
 				'title'  => 'SSI Open Water Diver Course',
-				'price'  => '&#3647;9,850',
+				'price'  => '&#3647;9,500',
 				'normal' => 'Normally',
 				'was'    => '&#3647;10,950',
 				'line_1' => 'Special price available until 20 July.',
@@ -248,7 +248,7 @@ function crd_low_season_offer_shortcode( $atts ) {
 			'fr' => array(
 				'label'  => 'Offre basse saison',
 				'title'  => 'Open Water Diver',
-				'price'  => '&#3647;9,850',
+				'price'  => '&#3647;9,500',
 				'normal' => 'Normalement',
 				'was'    => '&#3647;10,950',
 				'line_1' => 'Tarif spécial disponible jusqu’au 20 juillet.',
@@ -258,7 +258,7 @@ function crd_low_season_offer_shortcode( $atts ) {
 			'de' => array(
 				'label'  => 'Nebensaison-Angebot',
 				'title'  => 'Open Water Diver',
-				'price'  => '&#3647;9,850',
+				'price'  => '&#3647;9,500',
 				'normal' => 'Normalerweise',
 				'was'    => '&#3647;10,950',
 				'line_1' => 'Sonderpreis verfügbar bis zum 20. Juli.',
@@ -268,7 +268,7 @@ function crd_low_season_offer_shortcode( $atts ) {
 			'es' => array(
 				'label'  => 'Oferta de temporada baja',
 				'title'  => 'Open Water Diver',
-				'price'  => '&#3647;9,850',
+				'price'  => '&#3647;9,500',
 				'normal' => 'Normalmente',
 				'was'    => '&#3647;10,950',
 				'line_1' => 'Precio especial disponible hasta el 20 de julio.',
@@ -407,7 +407,7 @@ function crd_low_season_offer_shortcode( $atts ) {
 			<div class="crd-low-season-offer__deals">
 				<div class="crd-low-season-offer__deal">
 					<p class="crd-low-season-offer__deal-name">' . esc_html( $copy['ow'] ) . '</p>
-					<div class="crd-low-season-offer__deal-price">&#3647;9,850</div>
+					<div class="crd-low-season-offer__deal-price">&#3647;9,500</div>
 				</div>
 				<div class="crd-low-season-offer__deal">
 					<p class="crd-low-season-offer__deal-name">' . esc_html( $copy['advanced'] ) . '</p>
