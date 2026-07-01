@@ -1,0 +1,72 @@
+# WordPress core and local runtime files are not deployed from this repo.
+/wp-admin/
+/wp-includes/
+/wp-*.php
+/index.php
+/xmlrpc.php
+/license.txt
+/readme.html
+
+# Local WordPress configuration and server-specific files.
+/wp-config.php
+/wp-config-local.php
+/.htaccess
+/.htaccess.*
+/.user.ini
+/php.ini
+/wordfence-waf.php
+
+# Restored nested live copy and unrelated local site folders.
+/chalokreefdivers.com/
+/woodlawn.turtlewebdesigns.com/
+/.well-known/
+/.ftpquota
+/.git.broken-*/
+
+# WordPress generated content and backups.
+/wp-content/uploads/
+/wp-content/cache/
+/wp-content/upgrade/
+/wp-content/upgrade-temp-backup/
+/wp-content/ai1wm-backups/
+/wp-content/wflogs/
+/wp-content/debug.log
+/wp-content/advanced-cache.php
+/wp-content/object-cache.php
+/wp-content/index.php
+
+# Keep the CRD low-season MU plugin deployable; ignore other restored MU plugins by default.
+/wp-content/mu-plugins/*
+!/wp-content/mu-plugins/
+!/wp-content/mu-plugins/crd-low-season-offers.php
+
+# Restored vendor/plugin/theme directories are not part of this narrow deploy pipeline yet.
+/wp-content/plugins/
+/wp-content/themes/
+
+# Restore artifacts, database dumps, logs, and large local files.
+/public_html.zip
+/*.sql
+/*.sql.gz
+/*.zip
+/*.bak*
+/*.log
+/error_log
+/cron_output.txt
+/cron_test.log
+/debug_backup.log
+
+# Local Codex/agent scratch and backups.
+/.codex/
+/.agents/
+
+# OS/editor/dependency noise.
+.DS_Store
+Thumbs.db
+desktop.ini
+.idea/
+.vscode/
+node_modules/
+vendor/
+dist/
+build/
