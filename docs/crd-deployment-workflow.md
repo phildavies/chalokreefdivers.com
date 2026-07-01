@@ -35,21 +35,27 @@ update `DEPLOYPATH` before deploying.
 
 Database changes should be repeatable and idempotent, not copied from local exports.
 
-After a full live database backup and affected-row export, run the helper in dry-run mode from the live WordPress root:
+Luke's cPanel does not currently provide Terminal access, so the live migration is run through a temporary admin-only screen in the MU plugin:
 
-```bash
-wp eval-file tools/crd-low-season-offer-elementor-migration.php
+```text
+WordPress Admin -> Tools -> CRD Offer Migration
 ```
 
-Review that it finds the correct 12 live pages by slug/title/language and reports only expected `INSERT` or `SKIP_EXISTS` rows.
+The default view is a dry run and makes no database changes. Review that it finds the correct 12 live pages by slug/title/language and reports only expected `ready` or `skipped_already_exists` rows.
 
-Then apply:
+Apply requires:
 
-```bash
-wp eval-file tools/crd-low-season-offer-elementor-migration.php -- --apply
-```
+- a logged-in administrator
+- `manage_options`
+- a POST request
+- a valid nonce
+- the migration not already being marked complete
 
-The helper inserts one Elementor shortcode widget after the first top-level section and deletes `_elementor_element_cache` only for pages it changes.
+On apply, the tool creates a backup option containing the affected page IDs, titles, slugs, original `_elementor_data`, shortcode, and timestamp for pages it will change. It inserts one Elementor shortcode widget after the first top-level section and deletes `_elementor_element_cache` only for pages it changes.
+
+After a successful apply, it marks itself complete so a second apply is blocked. Remove the temporary admin migration code after live verification, leaving the shortcode rendering code in place.
+
+The WP-CLI helper at `tools/crd-low-season-offer-elementor-migration.php` remains available for environments with Terminal access, but the live CRD path is the admin screen unless Terminal becomes available later.
 
 ## Backups Before Migration
 

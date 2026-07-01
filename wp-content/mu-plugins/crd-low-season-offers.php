@@ -423,3 +423,439 @@ function crd_low_season_offer_shortcode( $atts ) {
 }
 
 add_shortcode( 'crd_low_season_offer', 'crd_low_season_offer_shortcode' );
+
+define( 'CRD_LOW_SEASON_MIGRATION_OPTION', 'crd_low_season_offer_migration_completed' );
+define( 'CRD_LOW_SEASON_MIGRATION_BACKUP_OPTION', 'crd_low_season_offer_migration_backup' );
+define( 'CRD_LOW_SEASON_MIGRATION_NONCE_ACTION', 'crd_low_season_offer_apply_migration' );
+
+function crd_low_season_offer_migration_targets() {
+	return array(
+		array(
+			'label'                 => 'English homepage',
+			'lang'                  => 'en',
+			'slugs'                 => array( 'home-2' ),
+			'frontpage'             => true,
+			'shortcode'             => '[crd_low_season_offer type="homepage" lang="en"]',
+			'equivalent_shortcodes' => array( '[crd_low_season_offer type="homepage"]' ),
+		),
+		array(
+			'label'     => 'French homepage',
+			'lang'      => 'fr',
+			'slugs'     => array( 'home', 'home-of-diving-at-chalok-reef-divers-koh-tao-francais' ),
+			'shortcode' => '[crd_low_season_offer type="homepage" lang="fr"]',
+		),
+		array(
+			'label'     => 'German homepage',
+			'lang'      => 'de',
+			'slugs'     => array( 'home-of-diving-at-chalok-reef-divers-koh-tao-deutsch' ),
+			'shortcode' => '[crd_low_season_offer type="homepage" lang="de"]',
+		),
+		array(
+			'label'     => 'Spanish homepage',
+			'lang'      => 'es',
+			'slugs'     => array( 'home-es' ),
+			'shortcode' => '[crd_low_season_offer type="homepage" lang="es"]',
+		),
+		array(
+			'label'     => 'English Open Water',
+			'lang'      => 'en',
+			'slugs'     => array( 'open-water-course' ),
+			'shortcode' => '[crd_low_season_offer type="open_water"]',
+		),
+		array(
+			'label'     => 'French Open Water',
+			'lang'      => 'fr',
+			'slugs'     => array( 'license-de-plongee' ),
+			'shortcode' => '[crd_low_season_offer type="open_water" lang="fr"]',
+		),
+		array(
+			'label'     => 'German Open Water',
+			'lang'      => 'de',
+			'slugs'     => array( 'open-water-kurs-koh-tao' ),
+			'shortcode' => '[crd_low_season_offer type="open_water" lang="de"]',
+		),
+		array(
+			'label'     => 'Spanish Open Water',
+			'lang'      => 'es',
+			'slugs'     => array( 'curso-open-water-en-koh-tao' ),
+			'shortcode' => '[crd_low_season_offer type="open_water" lang="es"]',
+		),
+		array(
+			'label'     => 'English Advanced',
+			'lang'      => 'en',
+			'slugs'     => array( 'advanced-diving-course' ),
+			'shortcode' => '[crd_low_season_offer type="advanced"]',
+		),
+		array(
+			'label'     => 'French Advanced',
+			'lang'      => 'fr',
+			'slugs'     => array( 'plongee-avancee', 'cours-de-plongee-avance' ),
+			'shortcode' => '[crd_low_season_offer type="advanced" lang="fr"]',
+		),
+		array(
+			'label'     => 'German Advanced',
+			'lang'      => 'de',
+			'slugs'     => array( 'fortgeschrittener' ),
+			'shortcode' => '[crd_low_season_offer type="advanced" lang="de"]',
+		),
+		array(
+			'label'     => 'Spanish Advanced',
+			'lang'      => 'es',
+			'slugs'     => array( 'curso-de-buceo-avanzado' ),
+			'shortcode' => '[crd_low_season_offer type="advanced" lang="es"]',
+		),
+	);
+}
+
+function crd_low_season_offer_page_has_language( $post_id, $lang ) {
+	global $wpdb;
+
+	$found = $wpdb->get_var(
+		$wpdb->prepare(
+			"SELECT t.slug
+			FROM {$wpdb->term_relationships} tr
+			JOIN {$wpdb->term_taxonomy} tt ON tt.term_taxonomy_id = tr.term_taxonomy_id
+			JOIN {$wpdb->terms} t ON t.term_id = tt.term_id
+			WHERE tr.object_id = %d
+			AND tt.taxonomy = 'language'
+			AND t.slug = %s
+			LIMIT 1",
+			$post_id,
+			$lang
+		)
+	);
+
+	return $found === $lang;
+}
+
+function crd_low_season_offer_find_migration_page( $target ) {
+	global $wpdb;
+
+	if ( ! empty( $target['frontpage'] ) ) {
+		$front_id = (int) get_option( 'page_on_front' );
+		if ( $front_id && crd_low_season_offer_page_has_language( $front_id, $target['lang'] ) ) {
+			return get_post( $front_id );
+		}
+	}
+
+	foreach ( $target['slugs'] as $slug ) {
+		$post_id = $wpdb->get_var(
+			$wpdb->prepare(
+				"SELECT ID FROM {$wpdb->posts}
+				WHERE post_type = 'page'
+				AND post_status = 'publish'
+				AND post_name = %s
+				ORDER BY ID ASC
+				LIMIT 1",
+				$slug
+			)
+		);
+		$post    = $post_id ? get_post( (int) $post_id ) : null;
+
+		if ( $post && crd_low_season_offer_page_has_language( $post->ID, $target['lang'] ) ) {
+			return $post;
+		}
+	}
+
+	return null;
+}
+
+function crd_low_season_offer_find_shortcode_paths( $nodes, $shortcode, $path = '' ) {
+	$found = array();
+
+	foreach ( $nodes as $index => $node ) {
+		$current = '' === $path ? (string) $index : $path . '.' . $index;
+
+		if (
+			isset( $node['elType'], $node['widgetType'], $node['settings']['shortcode'] )
+			&& 'widget' === $node['elType']
+			&& 'shortcode' === $node['widgetType']
+			&& $shortcode === $node['settings']['shortcode']
+		) {
+			$found[] = $current;
+		}
+
+		if ( ! empty( $node['elements'] ) && is_array( $node['elements'] ) ) {
+			$found = array_merge( $found, crd_low_season_offer_find_shortcode_paths( $node['elements'], $shortcode, $current . '.elements' ) );
+		}
+	}
+
+	return $found;
+}
+
+function crd_low_season_offer_migration_section( $shortcode ) {
+	return array(
+		'id'       => substr( md5( $shortcode . microtime( true ) ), 0, 7 ),
+		'elType'   => 'section',
+		'settings' => array(
+			'content_width'  => array( 'unit' => 'px', 'size' => 1180, 'sizes' => array() ),
+			'gap'            => 'no',
+			'padding'        => array( 'unit' => 'px', 'top' => '12', 'right' => '0', 'bottom' => '12', 'left' => '0', 'isLinked' => false ),
+			'padding_tablet' => array( 'unit' => 'px', 'top' => '8', 'right' => '0', 'bottom' => '8', 'left' => '0', 'isLinked' => false ),
+			'padding_mobile' => array( 'unit' => 'px', 'top' => '6', 'right' => '0', 'bottom' => '6', 'left' => '0', 'isLinked' => false ),
+		),
+		'elements' => array(
+			array(
+				'id'       => substr( md5( 'column' . $shortcode . microtime( true ) ), 0, 7 ),
+				'elType'   => 'column',
+				'settings' => array( '_column_size' => 100, '_inline_size' => null ),
+				'elements' => array(
+					array(
+						'id'         => substr( md5( 'widget' . $shortcode . microtime( true ) ), 0, 7 ),
+						'elType'     => 'widget',
+						'settings'   => array( 'shortcode' => $shortcode ),
+						'elements'   => array(),
+						'widgetType' => 'shortcode',
+					),
+				),
+				'isInner'  => false,
+			),
+		),
+		'isInner'  => false,
+	);
+}
+
+function crd_low_season_offer_migration_scan() {
+	$results = array();
+
+	foreach ( crd_low_season_offer_migration_targets() as $target ) {
+		$post = crd_low_season_offer_find_migration_page( $target );
+
+		if ( ! $post ) {
+			$results[] = array(
+				'status'    => 'not_found',
+				'target'    => $target,
+				'post'      => null,
+				'paths'     => array(),
+				'raw_data'  => '',
+				'json_data' => null,
+			);
+			continue;
+		}
+
+		$raw  = get_post_meta( $post->ID, '_elementor_data', true );
+		$data = json_decode( $raw, true );
+
+		if ( '' === $raw || ! is_array( $data ) ) {
+			$results[] = array(
+				'status'    => 'bad_elementor_data',
+				'target'    => $target,
+				'post'      => $post,
+				'paths'     => array(),
+				'raw_data'  => $raw,
+				'json_data' => null,
+			);
+			continue;
+		}
+
+		$shortcodes_to_check = array_merge( array( $target['shortcode'] ), isset( $target['equivalent_shortcodes'] ) ? $target['equivalent_shortcodes'] : array() );
+		$paths               = array();
+
+		foreach ( $shortcodes_to_check as $shortcode_to_check ) {
+			$paths = array_merge( $paths, crd_low_season_offer_find_shortcode_paths( $data, $shortcode_to_check ) );
+		}
+
+		$results[] = array(
+			'status'    => $paths ? 'skipped_already_exists' : 'ready',
+			'target'    => $target,
+			'post'      => $post,
+			'paths'     => $paths,
+			'raw_data'  => $raw,
+			'json_data' => $data,
+		);
+	}
+
+	return $results;
+}
+
+function crd_low_season_offer_migration_status_counts( $results ) {
+	$counts = array(
+		'updated'                => 0,
+		'skipped_already_exists' => 0,
+		'not_found'              => 0,
+		'bad_elementor_data'     => 0,
+		'failed'                 => 0,
+		'ready'                  => 0,
+	);
+
+	foreach ( $results as $result ) {
+		if ( isset( $counts[ $result['status'] ] ) ) {
+			$counts[ $result['status'] ]++;
+		}
+	}
+
+	return $counts;
+}
+
+function crd_low_season_offer_apply_migration() {
+	if ( ! current_user_can( 'manage_options' ) ) {
+		return new WP_Error( 'crd_offer_forbidden', 'Only administrators can run this migration.' );
+	}
+
+	if ( get_option( CRD_LOW_SEASON_MIGRATION_OPTION ) ) {
+		return new WP_Error( 'crd_offer_completed', 'Migration has already been marked complete.' );
+	}
+
+	$results = crd_low_season_offer_migration_scan();
+	$counts  = crd_low_season_offer_migration_status_counts( $results );
+
+	if ( $counts['not_found'] || $counts['bad_elementor_data'] ) {
+		return array(
+			'completed' => false,
+			'results'   => $results,
+			'message'   => 'Apply blocked because one or more target pages were not found or had bad Elementor data.',
+		);
+	}
+
+	$backup = array(
+		'timestamp' => current_time( 'mysql' ),
+		'pages'     => array(),
+	);
+
+	foreach ( $results as $result ) {
+		if ( 'ready' !== $result['status'] || ! $result['post'] ) {
+			continue;
+		}
+
+		$backup['pages'][] = array(
+			'ID'              => $result['post']->ID,
+			'post_title'      => $result['post']->post_title,
+			'post_name'       => $result['post']->post_name,
+			'shortcode'       => $result['target']['shortcode'],
+			'_elementor_data' => $result['raw_data'],
+		);
+	}
+
+	update_option( CRD_LOW_SEASON_MIGRATION_BACKUP_OPTION, $backup, false );
+
+	foreach ( $results as $index => $result ) {
+		if ( 'ready' !== $result['status'] || ! $result['post'] ) {
+			continue;
+		}
+
+		$data = $result['json_data'];
+		array_splice( $data, 1, 0, array( crd_low_season_offer_migration_section( $result['target']['shortcode'] ) ) );
+
+		$updated = update_post_meta( $result['post']->ID, '_elementor_data', wp_slash( wp_json_encode( $data, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE ) ) );
+
+		if ( false === $updated ) {
+			$results[ $index ]['status'] = 'failed';
+			continue;
+		}
+
+		delete_post_meta( $result['post']->ID, '_elementor_element_cache' );
+		wp_update_post( array( 'ID' => $result['post']->ID ) );
+		$results[ $index ]['status'] = 'updated';
+	}
+
+	$final_counts = crd_low_season_offer_migration_status_counts( $results );
+	$completed    = 0 === $final_counts['failed'] && 0 === $final_counts['not_found'] && 0 === $final_counts['bad_elementor_data'];
+
+	if ( $completed ) {
+		update_option(
+			CRD_LOW_SEASON_MIGRATION_OPTION,
+			array(
+				'completed_at' => current_time( 'mysql' ),
+				'updated'      => $final_counts['updated'],
+				'skipped'      => $final_counts['skipped_already_exists'],
+			),
+			false
+		);
+	}
+
+	return array(
+		'completed' => $completed,
+		'results'   => $results,
+		'message'   => $completed ? 'Migration completed.' : 'Migration did not complete because one or more updates failed.',
+	);
+}
+
+function crd_low_season_offer_add_migration_admin_page() {
+	add_management_page(
+		'CRD Offer Migration',
+		'CRD Offer Migration',
+		'manage_options',
+		'crd-offer-migration',
+		'crd_low_season_offer_render_migration_admin_page'
+	);
+}
+
+add_action( 'admin_menu', 'crd_low_season_offer_add_migration_admin_page' );
+
+function crd_low_season_offer_render_migration_admin_page() {
+	if ( ! current_user_can( 'manage_options' ) ) {
+		wp_die( esc_html__( 'You do not have permission to access this page.', 'default' ) );
+	}
+
+	$apply_result = null;
+	if ( 'POST' === $_SERVER['REQUEST_METHOD'] && isset( $_POST['crd_low_season_offer_apply'] ) ) {
+		check_admin_referer( CRD_LOW_SEASON_MIGRATION_NONCE_ACTION );
+		$apply_result = crd_low_season_offer_apply_migration();
+	}
+
+	$completed = get_option( CRD_LOW_SEASON_MIGRATION_OPTION );
+	$results   = $apply_result && ! is_wp_error( $apply_result ) ? $apply_result['results'] : crd_low_season_offer_migration_scan();
+	$counts    = crd_low_season_offer_migration_status_counts( $results );
+	?>
+	<div class="wrap">
+		<h1>CRD Offer Migration</h1>
+		<p><strong>Temporary admin-only tool.</strong> Dry-run is the default view and makes no database changes.</p>
+
+		<?php if ( is_wp_error( $apply_result ) ) : ?>
+			<div class="notice notice-error"><p><?php echo esc_html( $apply_result->get_error_message() ); ?></p></div>
+		<?php elseif ( is_array( $apply_result ) ) : ?>
+			<div class="notice <?php echo $apply_result['completed'] ? 'notice-success' : 'notice-error'; ?>">
+				<p><?php echo esc_html( $apply_result['message'] ); ?></p>
+			</div>
+		<?php endif; ?>
+
+		<?php if ( $completed ) : ?>
+			<div class="notice notice-info">
+				<p>Migration is marked complete. Apply is disabled.</p>
+			</div>
+		<?php endif; ?>
+
+		<p>
+			Updated: <?php echo esc_html( (string) $counts['updated'] ); ?> |
+			Ready: <?php echo esc_html( (string) $counts['ready'] ); ?> |
+			Skipped already exists: <?php echo esc_html( (string) $counts['skipped_already_exists'] ); ?> |
+			Not found: <?php echo esc_html( (string) $counts['not_found'] ); ?> |
+			Bad Elementor data: <?php echo esc_html( (string) $counts['bad_elementor_data'] ); ?> |
+			Failed: <?php echo esc_html( (string) $counts['failed'] ); ?>
+		</p>
+
+		<table class="widefat striped">
+			<thead>
+				<tr>
+					<th>Status</th>
+					<th>Target</th>
+					<th>Page ID</th>
+					<th>Title</th>
+					<th>Slug</th>
+					<th>Shortcode</th>
+				</tr>
+			</thead>
+			<tbody>
+				<?php foreach ( $results as $result ) : ?>
+					<tr>
+						<td><code><?php echo esc_html( $result['status'] ); ?></code></td>
+						<td><?php echo esc_html( $result['target']['label'] ); ?></td>
+						<td><?php echo $result['post'] ? esc_html( (string) $result['post']->ID ) : '&mdash;'; ?></td>
+						<td><?php echo $result['post'] ? esc_html( $result['post']->post_title ) : '&mdash;'; ?></td>
+						<td><?php echo $result['post'] ? esc_html( $result['post']->post_name ) : '&mdash;'; ?></td>
+						<td><code><?php echo esc_html( $result['target']['shortcode'] ); ?></code></td>
+					</tr>
+				<?php endforeach; ?>
+			</tbody>
+		</table>
+
+		<?php if ( ! $completed ) : ?>
+			<form method="post" style="margin-top: 20px;">
+				<?php wp_nonce_field( CRD_LOW_SEASON_MIGRATION_NONCE_ACTION ); ?>
+				<input type="hidden" name="crd_low_season_offer_apply" value="1">
+				<button type="submit" class="button button-primary">Apply Migration</button>
+			</form>
+		<?php endif; ?>
+	</div>
+	<?php
+}
