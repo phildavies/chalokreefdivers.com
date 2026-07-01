@@ -1,9 +1,8 @@
 ---
 deployment:
   tasks:
-    # Confirm this path in cPanel before enabling Auto Deploy.
-    # Root-level local files point to /home/syjrr8jwazs0/public_html/.
-    - export DEPLOYPATH=/home/syjrr8jwazs0/public_html/
+    # Chalok Reef Divers WordPress install path.
+    - export DEPLOYPATH=/home/syjrr8jwazs0/public_html/chalokreefdivers.com/
 
     # Narrow first CRD deploy: install only the low-season offer MU plugin.
     - /bin/mkdir -p "$DEPLOYPATH/wp-content/mu-plugins"
