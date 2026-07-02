@@ -39,6 +39,7 @@
 /wp-content/mu-plugins/*
 !/wp-content/mu-plugins/
 !/wp-content/mu-plugins/crd-low-season-offers.php
+!/wp-content/mu-plugins/crd-brand-link-colours.php
 
 # Restored vendor/plugin/theme directories are not part of this narrow deploy pipeline yet.
 /wp-content/plugins/
