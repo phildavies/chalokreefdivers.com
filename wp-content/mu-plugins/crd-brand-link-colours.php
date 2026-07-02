@@ -245,3 +245,89 @@ CSS;
 
 add_action( 'wp_enqueue_scripts', 'crd_brand_link_colours_css', 99 );
 
+function crd_brand_link_colours_late_light_blue_css() {
+	$css = <<<CSS
+.site-main .elementor :is(
+	.has-theme-palette-8-background-color,
+	.has-background.has-theme-palette-8-background-color,
+	[style*="--e-global-color-kadence8"],
+	[style*="--global-palette8"],
+	[style*="#BBE6F9;"],
+	[style*="#bbe6f9;"],
+	[style*="#BBE6F9 "],
+	[style*="#bbe6f9 "],
+	.elementor-element-a792cf2,
+	.elementor-element-8e14d5d,
+	.elementor-element-c837610,
+	.elementor-element-0aaaf26,
+	.elementor-element-13552cf,
+	.elementor-element-b872b50,
+	.elementor-element-dc9f5a9,
+	.elementor-element-a6a7b77,
+	.elementor-element-0e74d65,
+	.elementor-element-c32017c,
+	.elementor-element-3586330,
+	.elementor-element-4eea088,
+	.elementor-element-91465a3,
+	.elementor-element-e52fce9,
+	.elementor-element-f67ec28
+) .elementor-widget-text-editor :is(p, li) :is(
+	a,
+	a *,
+	b a,
+	b a *,
+	strong a,
+	strong a *,
+	.PlaygroundEditorTheme__textBold,
+	.PlaygroundEditorTheme__textBold *
+) {
+	color: var(--crd-link-blue) !important;
+	text-decoration-color: currentColor !important;
+}
+
+.site-main .elementor :is(
+	.has-theme-palette-8-background-color,
+	.has-background.has-theme-palette-8-background-color,
+	[style*="--e-global-color-kadence8"],
+	[style*="--global-palette8"],
+	[style*="#BBE6F9;"],
+	[style*="#bbe6f9;"],
+	[style*="#BBE6F9 "],
+	[style*="#bbe6f9 "],
+	.elementor-element-a792cf2,
+	.elementor-element-8e14d5d,
+	.elementor-element-c837610,
+	.elementor-element-0aaaf26,
+	.elementor-element-13552cf,
+	.elementor-element-b872b50,
+	.elementor-element-dc9f5a9,
+	.elementor-element-a6a7b77,
+	.elementor-element-0e74d65,
+	.elementor-element-c32017c,
+	.elementor-element-3586330,
+	.elementor-element-4eea088,
+	.elementor-element-91465a3,
+	.elementor-element-e52fce9,
+	.elementor-element-f67ec28
+) .elementor-widget-text-editor :is(p, li) :is(
+	a:hover,
+	a:focus,
+	a:hover *,
+	a:focus *,
+	b a:hover,
+	b a:focus,
+	b a:hover *,
+	b a:focus *,
+	strong a:hover,
+	strong a:focus,
+	strong a:hover *,
+	strong a:focus *
+) {
+	color: var(--crd-link-blue-hover) !important;
+	text-decoration-color: currentColor !important;
+}
+CSS;
+	printf( "\n<style id=\"crd-brand-link-colours-late-inline-css\">\n%s\n</style>\n", $css );
+}
+
+add_action( 'wp_head', 'crd_brand_link_colours_late_light_blue_css', 999 );
