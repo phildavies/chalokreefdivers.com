@@ -4,6 +4,7 @@ deployment:
     # Chalok Reef Divers WordPress install path.
     - export DEPLOYPATH=/home/syjrr8jwazs0/public_html/chalokreefdivers.com/
 
-    # Narrow first CRD deploy: install only the low-season offer MU plugin.
+    # Narrow CRD deploy: install only approved MU plugin files.
     - /bin/mkdir -p "$DEPLOYPATH/wp-content/mu-plugins"
     - /bin/cp -f wp-content/mu-plugins/crd-low-season-offers.php "$DEPLOYPATH/wp-content/mu-plugins/crd-low-season-offers.php"
+    - /bin/cp -f wp-content/mu-plugins/crd-phase1-internal-links.php "$DEPLOYPATH/wp-content/mu-plugins/crd-phase1-internal-links.php"
