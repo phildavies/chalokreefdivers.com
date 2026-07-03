@@ -247,6 +247,149 @@ add_action( 'wp_enqueue_scripts', 'crd_brand_link_colours_css', 99 );
 
 function crd_brand_link_colours_late_light_blue_css() {
 	$css = <<<CSS
+body.home .site-main .elementor-16 :is(
+	.elementor-widget-text-editor,
+	.elementor-widget-theme-post-content
+) :is(p, li, .PlaygroundEditorTheme__ul) :is(
+	a,
+	a:visited,
+	a *,
+	b a,
+	b a *,
+	strong a,
+	strong a *,
+	.PlaygroundEditorTheme__textBold,
+	.PlaygroundEditorTheme__textBold *
+):not(.elementor-button):not(.elementor-button *) {
+	color: var(--crd-link-blue) !important;
+	text-decoration-color: currentColor !important;
+}
+
+body.home .site-main .elementor-16 :is(
+	.elementor-widget-text-editor,
+	.elementor-widget-theme-post-content
+) :is(p, li, .PlaygroundEditorTheme__ul) :is(
+	a:hover,
+	a:focus,
+	a:hover *,
+	a:focus *,
+	b a:hover,
+	b a:focus,
+	b a:hover *,
+	b a:focus *,
+	strong a:hover,
+	strong a:focus,
+	strong a:hover *,
+	strong a:focus *
+):not(.elementor-button):not(.elementor-button *) {
+	color: var(--crd-link-blue-hover) !important;
+	text-decoration-color: currentColor !important;
+}
+
+.site-main .elementor .PlaygroundEditorTheme__ul a:not(.elementor-button),
+.site-main .elementor .PlaygroundEditorTheme__ul a:visited:not(.elementor-button),
+.site-main .elementor .PlaygroundEditorTheme__ul a:not(.elementor-button) *,
+.site-main .elementor .PlaygroundEditorTheme__ul a:visited:not(.elementor-button) * {
+	color: var(--crd-link-blue) !important;
+	text-decoration-color: currentColor !important;
+}
+
+.site-main .elementor .PlaygroundEditorTheme__ul a:hover:not(.elementor-button),
+.site-main .elementor .PlaygroundEditorTheme__ul a:focus:not(.elementor-button),
+.site-main .elementor .PlaygroundEditorTheme__ul a:hover:not(.elementor-button) *,
+.site-main .elementor .PlaygroundEditorTheme__ul a:focus:not(.elementor-button) * {
+	color: var(--crd-link-blue-hover) !important;
+	text-decoration-color: currentColor !important;
+}
+
+.entry-content :where(
+	.elementor-element-e4bb933,
+	.elementor-element-f9ef977,
+	.elementor-element-c7461e7,
+	.elementor-element-2f92e07,
+	.elementor-element-f19a7bc,
+	.elementor-element-c44e0a0,
+	.elementor-element-ea2ced8,
+	.elementor-element-df759d7,
+	.elementor-element-8924c31,
+	.has-theme-palette-1-background-color,
+	.has-theme-palette-2-background-color,
+	.has-theme-palette-3-background-color,
+	.has-theme-palette-4-background-color,
+	.has-theme-palette-5-background-color,
+	.has-theme-palette-6-background-color
+) .PlaygroundEditorTheme__ul a:not(.elementor-button),
+.entry-content :where(
+	.elementor-element-e4bb933,
+	.elementor-element-f9ef977,
+	.elementor-element-c7461e7,
+	.elementor-element-2f92e07,
+	.elementor-element-f19a7bc,
+	.elementor-element-c44e0a0,
+	.elementor-element-ea2ced8,
+	.elementor-element-df759d7,
+	.elementor-element-8924c31,
+	.has-theme-palette-1-background-color,
+	.has-theme-palette-2-background-color,
+	.has-theme-palette-3-background-color,
+	.has-theme-palette-4-background-color,
+	.has-theme-palette-5-background-color,
+	.has-theme-palette-6-background-color
+) .PlaygroundEditorTheme__ul a:visited:not(.elementor-button) {
+	color: var(--crd-sunset-accent) !important;
+}
+
+.entry-content :where(
+	.elementor-element-e4bb933,
+	.elementor-element-f9ef977,
+	.elementor-element-c7461e7,
+	.elementor-element-2f92e07,
+	.elementor-element-f19a7bc,
+	.elementor-element-c44e0a0,
+	.elementor-element-ea2ced8,
+	.elementor-element-df759d7,
+	.elementor-element-8924c31,
+	.has-theme-palette-1-background-color,
+	.has-theme-palette-2-background-color,
+	.has-theme-palette-3-background-color,
+	.has-theme-palette-4-background-color,
+	.has-theme-palette-5-background-color,
+	.has-theme-palette-6-background-color
+) .PlaygroundEditorTheme__ul a:hover:not(.elementor-button),
+.entry-content :where(
+	.elementor-element-e4bb933,
+	.elementor-element-f9ef977,
+	.elementor-element-c7461e7,
+	.elementor-element-2f92e07,
+	.elementor-element-f19a7bc,
+	.elementor-element-c44e0a0,
+	.elementor-element-ea2ced8,
+	.elementor-element-df759d7,
+	.elementor-element-8924c31,
+	.has-theme-palette-1-background-color,
+	.has-theme-palette-2-background-color,
+	.has-theme-palette-3-background-color,
+	.has-theme-palette-4-background-color,
+	.has-theme-palette-5-background-color,
+	.has-theme-palette-6-background-color
+) .PlaygroundEditorTheme__ul a:focus:not(.elementor-button) {
+	color: var(--crd-sunset-accent-hover) !important;
+}
+
+.site-main .elementor .dive-sites-section .PlaygroundEditorTheme__ul a:not(.elementor-button),
+.site-main .elementor .dive-sites-section .PlaygroundEditorTheme__ul a:visited:not(.elementor-button),
+.site-main .elementor .dive-sites-section :is(p, li) a:not(.elementor-button),
+.site-main .elementor .dive-sites-section :is(p, li) a:visited:not(.elementor-button) {
+	color: #FFD24A !important;
+}
+
+.site-main .elementor .dive-sites-section .PlaygroundEditorTheme__ul a:hover:not(.elementor-button),
+.site-main .elementor .dive-sites-section .PlaygroundEditorTheme__ul a:focus:not(.elementor-button),
+.site-main .elementor .dive-sites-section :is(p, li) a:hover:not(.elementor-button),
+.site-main .elementor .dive-sites-section :is(p, li) a:focus:not(.elementor-button) {
+	color: var(--crd-sunset-accent-hover) !important;
+}
+
 .site-main .elementor :is(
 	.has-theme-palette-8-background-color,
 	.has-background.has-theme-palette-8-background-color,
