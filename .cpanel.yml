@@ -7,6 +7,7 @@ deployment:
     # Narrow CRD deploy: install only approved MU plugin files.
     - /bin/mkdir -p "$DEPLOYPATH/wp-content/mu-plugins"
     - /bin/rm -f "$DEPLOYPATH/wp-content/mu-plugins/crd-phase1-internal-links.php"
+    - /bin/rm -f "$DEPLOYPATH/wp-content/mu-plugins/crd-phase2-internal-links.php"
     - /bin/cp -f wp-content/mu-plugins/crd-brand-link-colours.php "$DEPLOYPATH/wp-content/mu-plugins/crd-brand-link-colours.php"
     - /bin/cp -f wp-content/mu-plugins/crd-low-season-offers.php "$DEPLOYPATH/wp-content/mu-plugins/crd-low-season-offers.php"
-    - /bin/cp -f wp-content/mu-plugins/crd-phase2-internal-links.php "$DEPLOYPATH/wp-content/mu-plugins/crd-phase2-internal-links.php"
+    - /bin/cp -f wp-content/mu-plugins/crd-phase3a-internal-links.php "$DEPLOYPATH/wp-content/mu-plugins/crd-phase3a-internal-links.php"
