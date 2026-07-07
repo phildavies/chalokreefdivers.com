@@ -252,6 +252,12 @@ function crd_low_season_offer_styles() {
 	</style>';
 }
 
+function crd_low_season_offer_whatsapp_url() {
+	$message = 'Hi Chalok Reef Divers, I’d like to confirm availability for a course start date before booking.';
+
+	return 'https://wa.me/66957262429?text=' . rawurlencode( $message );
+}
+
 function crd_low_season_offer_shortcode( $atts ) {
 	if ( ! crd_low_season_offer_is_active() ) {
 		return '';
@@ -269,6 +275,7 @@ function crd_low_season_offer_shortcode( $atts ) {
 	$type     = sanitize_key( $atts['type'] );
 	$lang     = sanitize_key( $atts['lang'] );
 	$book_url = home_url( '/book-now/' );
+	$whatsapp_url = crd_low_season_offer_whatsapp_url();
 	$styles   = crd_low_season_offer_styles();
 
 	$course_copy = array(
@@ -292,8 +299,8 @@ function crd_low_season_offer_shortcode( $atts ) {
 				'normal' => 'Normalement',
 				'was'    => '&#3647;10,950',
 				'save'   => 'Economisez &#3647;1,000',
-				'line_1' => 'Tarif spÃ©cial disponible jusquâ€™au 20 juillet.',
-				'line_2' => 'Inclut 3 jours, 6 plongÃ©es, lâ€™Ã©quipement et la certification SSI.',
+				'line_1' => 'Tarif spécial disponible jusqu’au 20 juillet.',
+				'line_2' => 'Inclut 3 jours, 6 plongées, l’équipement et la certification SSI.',
 				'warning' => 'Veuillez nous contacter sur WhatsApp avant de reserver afin de confirmer la disponibilite pour votre date de depart preferee. Les places sont limitees et certaines dates peuvent deja etre completes.',
 				'button' => 'Confirmer sur WhatsApp',
 			),
@@ -304,8 +311,8 @@ function crd_low_season_offer_shortcode( $atts ) {
 				'normal' => 'Normalerweise',
 				'was'    => '&#3647;10,950',
 				'save'   => '&#3647;1,000 sparen',
-				'line_1' => 'Sonderpreis verfÃ¼gbar bis zum 20. Juli.',
-				'line_2' => 'Inklusive 3 Tage, 6 TauchgÃ¤nge, AusrÃ¼stung und SSI-Zertifizierung.',
+				'line_1' => 'Sonderpreis verfügbar bis zum 20. Juli.',
+				'line_2' => 'Inklusive 3 Tage, 6 Tauchgänge, Ausrüstung und SSI-Zertifizierung.',
 				'warning' => 'Bitte kontaktiere uns vor der Buchung per WhatsApp, um die Verfuegbarkeit fuer dein bevorzugtes Startdatum zu bestaetigen. Die Plaetze sind begrenzt und einige Daten koennen bereits ausgebucht sein.',
 				'button' => 'Auf WhatsApp bestaetigen',
 			),
@@ -317,7 +324,7 @@ function crd_low_season_offer_shortcode( $atts ) {
 				'was'    => '&#3647;10,950',
 				'save'   => 'Ahorra &#3647;1,000',
 				'line_1' => 'Precio especial disponible hasta el 20 de julio.',
-				'line_2' => 'Incluye 3 dÃ­as, 6 inmersiones, equipo y certificaciÃ³n SSI.',
+				'line_2' => 'Incluye 3 días, 6 inmersiones, equipo y certificación SSI.',
 				'warning' => 'Por favor escribenos por WhatsApp antes de reservar para confirmar disponibilidad en tu fecha de inicio preferida. Las plazas son limitadas y algunas fechas pueden estar completas.',
 				'button' => 'Confirmar por WhatsApp',
 			),
@@ -339,9 +346,9 @@ function crd_low_season_offer_shortcode( $atts ) {
 				'price'  => '&#3647;8,950',
 				'normal' => 'Normalement',
 				'was'    => '&#3647;9,950',
-				'line_1' => 'Tarif spÃ©cial disponible jusquâ€™au 20 juillet.',
-				'line_2' => 'Inclut 5 plongÃ©es aventure et la certification SSI.',
-				'button' => 'RÃ©server Advanced',
+				'line_1' => 'Tarif spécial disponible jusqu’au 20 juillet.',
+				'line_2' => 'Inclut 5 plongées aventure et la certification SSI.',
+				'button' => 'Réserver Advanced',
 			),
 			'de' => array(
 				'label'  => 'Nebensaison-Angebot',
@@ -349,8 +356,8 @@ function crd_low_season_offer_shortcode( $atts ) {
 				'price'  => '&#3647;8,950',
 				'normal' => 'Normalerweise',
 				'was'    => '&#3647;9,950',
-				'line_1' => 'Sonderpreis verfÃ¼gbar bis zum 20. Juli.',
-				'line_2' => 'Inklusive 5 Adventure-TauchgÃ¤nge und SSI-Zertifizierung.',
+				'line_1' => 'Sonderpreis verfügbar bis zum 20. Juli.',
+				'line_2' => 'Inklusive 5 Adventure-Tauchgänge und SSI-Zertifizierung.',
 				'button' => 'Advanced buchen',
 			),
 			'es' => array(
@@ -360,7 +367,7 @@ function crd_low_season_offer_shortcode( $atts ) {
 				'normal' => 'Normalmente',
 				'was'    => '&#3647;9,950',
 				'line_1' => 'Precio especial disponible hasta el 20 de julio.',
-				'line_2' => 'Incluye 5 inmersiones de aventura y certificaciÃ³n SSI.',
+				'line_2' => 'Incluye 5 inmersiones de aventura y certificación SSI.',
 				'button' => 'Reservar Advanced',
 			),
 		),
@@ -385,7 +392,7 @@ function crd_low_season_offer_shortcode( $atts ) {
 					</div>
 					<div class="crd-low-season-offer__action">
 						<p class="crd-low-season-offer__warning">' . esc_html( $copy['warning'] ) . '</p>
-						<a class="crd-low-season-offer__button" href="' . esc_url( $book_url ) . '">' . esc_html( $copy['button'] ) . '</a>
+						<a class="crd-low-season-offer__button" href="' . esc_url( $whatsapp_url ) . '">' . esc_html( $copy['button'] ) . '</a>
 					</div>
 				</div>
 			</div>
@@ -471,7 +478,7 @@ function crd_low_season_offer_shortcode( $atts ) {
 			</div>
 			<div class="crd-low-season-offer__footer">
 				<p class="crd-low-season-offer__summary">' . esc_html( $copy['summary'] ) . '</p>
-				<a class="crd-low-season-offer__button" href="' . esc_url( $book_url ) . '">' . esc_html( $copy['button'] ) . '</a>
+				<a class="crd-low-season-offer__button" href="' . esc_url( $whatsapp_url ) . '">' . esc_html( $copy['button'] ) . '</a>
 			</div>
 		</div>
 	</section>';
