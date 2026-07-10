@@ -247,6 +247,113 @@ add_action( 'wp_enqueue_scripts', 'crd_brand_link_colours_css', 99 );
 
 function crd_brand_link_colours_late_light_blue_css() {
 	$css = <<<CSS
+body.home .site-main .elementor-16 .elementor-element-a159948 .elementor-widget-wrap {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+body.home .site-main .elementor-16 .elementor-element-168e00f {
+	order: 1;
+}
+
+body.home .site-main .elementor-16 .elementor-element-294d9c4 {
+	order: 2;
+}
+
+body.home .site-main .elementor-16 .elementor-element-e0e309b {
+	order: 3;
+}
+
+body.home .site-main .elementor-16 .elementor-element-6fa24e7 {
+	order: 4;
+}
+
+body.home .site-main .elementor-16 .elementor-element-6fa24e7 p:first-of-type {
+	margin: 0 0 18px;
+	color: #ffffff;
+	text-align: center;
+	text-shadow: 0 2px 14px rgba(0, 0, 0, 0.45);
+}
+
+body.home .site-main .elementor-16 .elementor-element-6fa24e7 p:nth-of-type(2) {
+	display: none;
+}
+
+body.home .site-main .elementor-16 .elementor-element-b029249 {
+	order: 5;
+	margin-bottom: 18px;
+}
+
+body.home .site-main .elementor-16 .crd-home-hero-summary {
+	order: 6;
+	width: min(92vw, 720px);
+	margin: 0 auto;
+	padding: 15px 18px;
+	border-radius: 8px;
+	background: linear-gradient(135deg, rgba(3, 18, 31, 0.58), rgba(3, 18, 31, 0.34));
+	color: #ffffff;
+	line-height: 1.55;
+	text-align: center;
+	text-shadow: 0 1px 8px rgba(0, 0, 0, 0.55);
+	backdrop-filter: blur(2px);
+}
+
+body.home .site-main .elementor-16 .elementor-element-a159948 .crd-home-hero-summary :is(a, a:visited, a *, strong a, strong a *) {
+	color: #ffd24a !important;
+	text-decoration-color: currentColor !important;
+}
+
+body.home .site-main .elementor-16 .elementor-element-a159948 .crd-home-hero-summary :is(a:hover, a:focus, a:hover *, a:focus *) {
+	color: #fff3a3 !important;
+	text-decoration-color: currentColor !important;
+}
+
+body.home .site-main .elementor-16 .elementor-element-46b1533 > .elementor-element-populated {
+	position: relative;
+	padding-bottom: 0;
+}
+
+body.home .site-main .elementor-16 .elementor-element-176bf9a {
+	position: relative;
+	z-index: 1;
+}
+
+body.home .site-main .elementor-16 .elementor-element-176bf9a img {
+	width: 100%;
+}
+
+body.home .site-main .elementor-16 .elementor-element-6ada511 {
+	top: 285px !important;
+	right: 18px !important;
+	bottom: auto !important;
+	left: auto !important;
+	width: 50% !important;
+	max-width: 50% !important;
+	z-index: 2;
+}
+
+body.home .site-main .elementor-16 .elementor-element-6ada511 img {
+	max-width: 100% !important;
+}
+
+body.home .site-main .elementor-16 .elementor-element-c3cc435 {
+	position: relative;
+	z-index: 3;
+	max-width: 52%;
+	margin-left: auto;
+	margin-top: 112px;
+	padding-right: 18px;
+}
+
+body.home .site-main .elementor-16 .elementor-element-c3cc435 p {
+	margin-bottom: 0;
+	color: #133042;
+	font-size: 0.95rem;
+	line-height: 1.35;
+}
+
 body.home .site-main .elementor-16 :is(
 	.elementor-widget-text-editor,
 	.elementor-widget-theme-post-content
@@ -469,8 +576,119 @@ body.home .site-main .elementor-16 :is(
 	color: var(--crd-link-blue-hover) !important;
 	text-decoration-color: currentColor !important;
 }
+
+@media (max-width: 1024px) {
+	body.home .site-main .elementor-16 .crd-home-hero-summary {
+		width: min(88vw, 640px);
+	}
+
+	body.home .site-main .elementor-16 .elementor-element-46b1533 > .elementor-element-populated {
+		padding-bottom: 0;
+	}
+
+	body.home .site-main .elementor-16 .elementor-element-6ada511 {
+		top: 255px !important;
+		right: 8px !important;
+		bottom: auto !important;
+		width: 44% !important;
+		max-width: 44% !important;
+	}
+
+	body.home .site-main .elementor-16 .elementor-element-c3cc435 {
+		max-width: 52%;
+		margin-top: 88px;
+		padding-right: 8px;
+	}
+}
+
+@media (max-width: 767px) {
+	body.home .site-main .elementor-16 .elementor-element-a159948 > .elementor-container {
+		min-height: 620px;
+	}
+
+	body.home .site-main .elementor-16 .elementor-element-294d9c4 .elementor-heading-title {
+		font-size: 60px !important;
+		line-height: 1.12em !important;
+		white-space: nowrap;
+	}
+
+	body.home .site-main .elementor-16 .elementor-element-6fa24e7 p:first-of-type {
+		margin-bottom: 14px;
+		padding: 0 12px;
+	}
+
+	body.home .site-main .elementor-16 .elementor-element-b029249 {
+		margin-bottom: 14px;
+	}
+
+	body.home .site-main .elementor-16 .crd-home-hero-summary {
+		width: min(90vw, 360px);
+		padding: 12px 14px;
+		font-size: 0.94rem;
+		line-height: 1.45;
+	}
+
+	body.home .site-main .elementor-16 .elementor-element-46b1533 > .elementor-element-populated {
+		padding-bottom: 10px;
+	}
+
+	body.home .site-main .elementor-16 .elementor-element-6ada511 {
+		position: relative !important;
+		top: auto !important;
+		right: auto !important;
+		bottom: auto !important;
+		left: auto !important;
+		width: 100% !important;
+		max-width: 100% !important;
+		margin-top: 18px;
+		text-align: center;
+	}
+
+	body.home .site-main .elementor-16 .elementor-element-6ada511 img {
+		max-width: 78% !important;
+	}
+
+	body.home .site-main .elementor-16 .elementor-element-c3cc435 {
+		max-width: 78%;
+		margin: 10px auto 0;
+		padding-right: 0;
+	}
+}
 CSS;
 	printf( "\n<style id=\"crd-brand-link-colours-late-inline-css\">\n%s\n</style>\n", $css );
 }
 
 add_action( 'wp_head', 'crd_brand_link_colours_late_light_blue_css', 999 );
+
+function crd_brand_home_hero_paragraph_script() {
+	if ( ! is_front_page() && ! is_home() ) {
+		return;
+	}
+
+	?>
+	<script id="crd-home-hero-paragraph-layout">
+	(function() {
+		function moveHeroSummary() {
+			var hero = document.querySelector('body.home .site-main .elementor-16 .elementor-element-a159948');
+			var summary = hero ? hero.querySelector('.elementor-element-6fa24e7 .elementor-widget-container p:nth-of-type(2)') : null;
+			var button = hero ? hero.querySelector('.elementor-element-b029249') : null;
+
+			if (!summary || !button || summary.classList.contains('crd-home-hero-summary')) {
+				return;
+			}
+
+			summary.classList.add('crd-home-hero-summary');
+			button.insertAdjacentElement('afterend', summary);
+		}
+
+		if (document.readyState === 'loading') {
+			document.addEventListener('DOMContentLoaded', moveHeroSummary);
+		} else {
+			moveHeroSummary();
+		}
+	})();
+	</script>
+	<?php
+}
+
+add_action( 'wp_footer', 'crd_brand_home_hero_paragraph_script', 30 );
