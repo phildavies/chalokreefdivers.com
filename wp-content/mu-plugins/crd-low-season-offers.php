@@ -315,10 +315,10 @@ function crd_low_season_offer_shortcode( $atts ) {
 			'en' => array(
 				'label'  => 'Low Season Special',
 				'title'  => 'SSI Open Water Diver Course',
-				'price'  => '&#3647;9,950',
+				'price'  => '&#3647;9,500',
 				'normal' => 'Normally',
 				'was'    => '&#3647;10,950',
-				'save'   => 'Save &#3647;1,000',
+				'save'   => 'Save &#3647;1,450',
 				'line_1' => 'Special price available until 20 July.',
 				'line_2' => 'Includes Pool Dive and 4 Open Water Dives, equipment and SSI certification.',
 				'warning' => 'Please WhatsApp us before booking to confirm availability for your preferred start date. Spaces are limited and some dates may already be full.',
@@ -327,10 +327,10 @@ function crd_low_season_offer_shortcode( $atts ) {
 			'fr' => array(
 				'label'  => 'Offre basse saison',
 				'title'  => 'Open Water Diver',
-				'price'  => '&#3647;9,950',
+				'price'  => '&#3647;9,500',
 				'normal' => 'Normalement',
 				'was'    => '&#3647;10,950',
-				'save'   => 'Economisez &#3647;1,000',
+				'save'   => 'Economisez &#3647;1,450',
 				'line_1' => 'Tarif spécial disponible jusqu’au 20 juillet.',
 				'line_2' => 'Inclut une plongee piscine et 4 plongees Open Water, l\'equipement et la certification SSI.',
 				'warning' => 'Veuillez nous contacter sur WhatsApp avant de reserver afin de confirmer la disponibilite pour votre date de depart preferee. Les places sont limitees et certaines dates peuvent deja etre completes.',
@@ -339,10 +339,10 @@ function crd_low_season_offer_shortcode( $atts ) {
 			'de' => array(
 				'label'  => 'Nebensaison-Angebot',
 				'title'  => 'Open Water Diver',
-				'price'  => '&#3647;9,950',
+				'price'  => '&#3647;9,500',
 				'normal' => 'Normalerweise',
 				'was'    => '&#3647;10,950',
-				'save'   => '&#3647;1,000 sparen',
+				'save'   => '&#3647;1,450 sparen',
 				'line_1' => 'Sonderpreis verfügbar bis zum 20. Juli.',
 				'line_2' => 'Inklusive Pool-Tauchgang und 4 Open-Water-Tauchgaenge, Ausruestung und SSI-Zertifizierung.',
 				'warning' => 'Bitte kontaktiere uns vor der Buchung per WhatsApp, um die Verfuegbarkeit fuer dein bevorzugtes Startdatum zu bestaetigen. Die Plaetze sind begrenzt und einige Daten koennen bereits ausgebucht sein.',
@@ -351,10 +351,10 @@ function crd_low_season_offer_shortcode( $atts ) {
 			'es' => array(
 				'label'  => 'Oferta de temporada baja',
 				'title'  => 'Open Water Diver',
-				'price'  => '&#3647;9,950',
+				'price'  => '&#3647;9,500',
 				'normal' => 'Normalmente',
 				'was'    => '&#3647;10,950',
-				'save'   => 'Ahorra &#3647;1,000',
+				'save'   => 'Ahorra &#3647;1,450',
 				'line_1' => 'Precio especial disponible hasta el 20 de julio.',
 				'line_2' => 'Incluye una inmersion en piscina y 4 inmersiones Open Water, equipo y certificacion SSI.',
 				'warning' => 'Por favor escribenos por WhatsApp antes de reservar para confirmar disponibilidad en tu fecha de inicio preferida. Las plazas son limitadas y algunas fechas pueden estar completas.',
@@ -407,10 +407,10 @@ function crd_low_season_offer_shortcode( $atts ) {
 			'en' => array(
 				'label'   => 'Low Season Special',
 				'title'   => 'Dive & Stay Special',
-				'price'   => '&#3647;10,900',
+				'price'   => '&#3647;10,500',
 				'normal'  => 'Normally',
 				'was'     => '&#3647;11,900',
-				'save'    => 'Save &#3647;1,000',
+				'save'    => 'Save &#3647;1,400',
 				'line_1'  => 'Special price available until 20 July.',
 				'line_2'  => 'Includes Open Water Diver course plus hostel stay.',
 				'warning' => 'Please WhatsApp us before booking to confirm room and course availability.',
@@ -419,10 +419,10 @@ function crd_low_season_offer_shortcode( $atts ) {
 			'fr' => array(
 				'label'   => 'Offre basse saison',
 				'title'   => 'Offre Dive & Stay',
-				'price'   => '&#3647;10,900',
+				'price'   => '&#3647;10,500',
 				'normal'  => 'Normalement',
 				'was'     => '&#3647;11,900',
-				'save'    => 'Economisez &#3647;1,000',
+				'save'    => 'Economisez &#3647;1,400',
 				'line_1'  => 'Tarif special disponible jusqu au 20 juillet.',
 				'line_2'  => 'Inclut le cours Open Water Diver avec sejour en hostel.',
 				'warning' => 'Veuillez nous contacter sur WhatsApp avant de reserver afin de confirmer la disponibilite de la chambre et du cours.',
@@ -431,10 +431,10 @@ function crd_low_season_offer_shortcode( $atts ) {
 			'de' => array(
 				'label'   => 'Nebensaison-Angebot',
 				'title'   => 'Dive & Stay Angebot',
-				'price'   => '&#3647;10,900',
+				'price'   => '&#3647;10,500',
 				'normal'  => 'Normalerweise',
 				'was'     => '&#3647;11,900',
-				'save'    => '&#3647;1,000 sparen',
+				'save'    => '&#3647;1,400 sparen',
 				'line_1'  => 'Sonderpreis verfuegbar bis zum 20. Juli.',
 				'line_2'  => 'Inklusive Open Water Diver Kurs plus Hostel-Aufenthalt.',
 				'warning' => 'Bitte kontaktiere uns vor der Buchung per WhatsApp, um Zimmer- und Kursverfuegbarkeit zu bestaetigen.',
@@ -443,10 +443,10 @@ function crd_low_season_offer_shortcode( $atts ) {
 			'es' => array(
 				'label'   => 'Oferta de temporada baja',
 				'title'   => 'Oferta Dive & Stay',
-				'price'   => '&#3647;10,900',
+				'price'   => '&#3647;10,500',
 				'normal'  => 'Normalmente',
 				'was'     => '&#3647;11,900',
-				'save'    => 'Ahorra &#3647;1,000',
+				'save'    => 'Ahorra &#3647;1,400',
 				'line_1'  => 'Precio especial disponible hasta el 20 de julio.',
 				'line_2'  => 'Incluye el curso Open Water Diver mas estancia en hostel.',
 				'warning' => 'Por favor escribenos por WhatsApp antes de reservar para confirmar disponibilidad de habitacion y curso.',
@@ -536,8 +536,8 @@ function crd_low_season_offer_shortcode( $atts ) {
 			'ow'       => 'Open Water Diver now',
 			'advanced' => 'Advanced Open Water now',
 			'dive_stay' => 'Dive & Stay Special',
-			'ow_save'  => 'Save &#3647;1,000',
-			'dive_stay_save' => 'Save &#3647;1,000',
+			'ow_save'  => 'Save &#3647;1,450',
+			'dive_stay_save' => 'Save &#3647;1,400',
 			'dive_stay_detail' => 'Includes Open Water Diver course plus hostel stay.',
 			'summary'  => 'Special prices until 20 July. Please WhatsApp us before booking to confirm availability for your preferred start date. Spaces are limited and some dates may already be full.',
 			'button'   => 'WhatsApp to Confirm Availability',
@@ -549,8 +549,8 @@ function crd_low_season_offer_shortcode( $atts ) {
 			'ow'       => 'Open Water Diver ahora',
 			'advanced' => 'Advanced Open Water ahora',
 			'dive_stay' => 'Oferta Dive & Stay',
-			'ow_save'  => 'Ahorra &#3647;1,000',
-			'dive_stay_save' => 'Ahorra &#3647;1,000',
+			'ow_save'  => 'Ahorra &#3647;1,450',
+			'dive_stay_save' => 'Ahorra &#3647;1,400',
 			'dive_stay_detail' => 'Incluye el curso Open Water Diver mas estancia en hostel.',
 			'summary'  => 'Precios especiales hasta el 20 de julio. Por favor escribenos por WhatsApp antes de reservar para confirmar disponibilidad. Las plazas son limitadas y algunas fechas pueden estar completas.',
 			'button'   => 'Confirmar por WhatsApp',
@@ -562,8 +562,8 @@ function crd_low_season_offer_shortcode( $atts ) {
 			'ow'       => 'Open Water Diver jetzt',
 			'advanced' => 'Advanced Open Water jetzt',
 			'dive_stay' => 'Dive & Stay Angebot',
-			'ow_save'  => '&#3647;1,000 sparen',
-			'dive_stay_save' => '&#3647;1,000 sparen',
+			'ow_save'  => '&#3647;1,450 sparen',
+			'dive_stay_save' => '&#3647;1,400 sparen',
 			'dive_stay_detail' => 'Inklusive Open Water Diver Kurs plus Hostel-Aufenthalt.',
 			'summary'  => 'Spezialpreise bis 20. Juli. Bitte kontaktiere uns vor der Buchung per WhatsApp, um die Verfuegbarkeit zu bestaetigen. Die Plaetze sind begrenzt und einige Daten koennen bereits ausgebucht sein.',
 			'button'   => 'Auf WhatsApp bestaetigen',
@@ -575,8 +575,8 @@ function crd_low_season_offer_shortcode( $atts ) {
 			'ow'       => 'Open Water Diver maintenant',
 			'advanced' => 'Advanced Open Water maintenant',
 			'dive_stay' => 'Offre Dive & Stay',
-			'ow_save'  => 'Economisez &#3647;1,000',
-			'dive_stay_save' => 'Economisez &#3647;1,000',
+			'ow_save'  => 'Economisez &#3647;1,450',
+			'dive_stay_save' => 'Economisez &#3647;1,400',
 			'dive_stay_detail' => 'Inclut le cours Open Water Diver avec sejour en hostel.',
 			'summary'  => 'Prix speciaux jusqu au 20 juillet. Veuillez nous contacter sur WhatsApp avant de reserver afin de confirmer la disponibilite. Les places sont limitees et certaines dates peuvent deja etre completes.',
 			'button'   => 'Confirmer sur WhatsApp',
@@ -592,7 +592,7 @@ function crd_low_season_offer_shortcode( $atts ) {
 			<div class="crd-low-season-offer__deals">
 				<div class="crd-low-season-offer__deal">
 					<p class="crd-low-season-offer__deal-name">' . esc_html( $copy['ow'] ) . '</p>
-					<div class="crd-low-season-offer__deal-price">&#3647;9,950</div>
+					<div class="crd-low-season-offer__deal-price">&#3647;9,500</div>
 					<p class="crd-low-season-offer__deal-normal">Normally <del>&#3647;10,950</del></p>
 					<div class="crd-low-season-offer__save">' . wp_kses_post( $copy['ow_save'] ) . '</div>
 				</div>
@@ -603,7 +603,7 @@ function crd_low_season_offer_shortcode( $atts ) {
 				</div>
 				<div class="crd-low-season-offer__deal">
 					<p class="crd-low-season-offer__deal-name">' . esc_html( $copy['dive_stay'] ) . '</p>
-					<div class="crd-low-season-offer__deal-price">&#3647;10,900</div>
+					<div class="crd-low-season-offer__deal-price">&#3647;10,500</div>
 					<p class="crd-low-season-offer__deal-normal">Normally <del>&#3647;11,900</del></p>
 					<div class="crd-low-season-offer__save">' . wp_kses_post( $copy['dive_stay_save'] ) . '</div>
 					<p class="crd-low-season-offer__deal-detail">' . esc_html( $copy['dive_stay_detail'] ) . '</p>
